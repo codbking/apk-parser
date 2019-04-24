@@ -128,6 +128,14 @@ public class ApkMetaTranslator implements XmlStreamer {
                         attributes.getString("android:protectionLevel"));
                 apkMetaBuilder.addPermissions(permission);
                 break;
+            case "meta-data":
+                MetaData metaData = new MetaData(
+                        attributes.getString("name"),
+                        attributes.getString("value"),
+                        attributes.getString("resource")
+                );
+                apkMetaBuilder.addMetaData(metaData);
+                break;
         }
         tagStack[depth++] = xmlNodeStartTag.getName();
     }

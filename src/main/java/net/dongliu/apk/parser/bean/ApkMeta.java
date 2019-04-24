@@ -40,6 +40,11 @@ public class ApkMeta {
     private final List<String> usesPermissions;
     private final List<UseFeature> usesFeatures;
     private final List<Permission> permissions;
+    private final List<MetaData> metaDatas;
+
+    public List<MetaData> getMetaDatas() {
+        return metaDatas;
+    }
 
     private ApkMeta(Builder builder) {
         packageName = builder.packageName;
@@ -63,6 +68,7 @@ public class ApkMeta {
         usesPermissions = builder.usesPermissions;
         usesFeatures = builder.usesFeatures;
         permissions = builder.permissions;
+        metaDatas = builder.metaDatas;
     }
 
     public static Builder newBuilder() {
@@ -222,9 +228,11 @@ public class ApkMeta {
         private List<String> usesPermissions = new ArrayList<>();
         private List<UseFeature> usesFeatures = new ArrayList<>();
         private List<Permission> permissions = new ArrayList<>();
+        private List<MetaData> metaDatas = new ArrayList<>();
 
         private Builder() {
         }
+
 
         public Builder setPackageName(String packageName) {
             this.packageName = packageName;
@@ -330,6 +338,12 @@ public class ApkMeta {
             this.permissions.add(permission);
             return this;
         }
+
+        public Builder addMetaData(MetaData metaData){
+            metaDatas.add(metaData);
+            return this;
+        }
+
 
         public ApkMeta build() {
             return new ApkMeta(this);
